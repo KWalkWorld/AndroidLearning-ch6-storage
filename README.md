@@ -188,5 +188,8 @@ boolean succeed = saveNote2Database(content.toString().trim(), radioGroup.getChe
     }
 ```
 ## 效果实现
-！[]
-
+![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist1.png)
+![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist2.png)
+![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist3.png)
+![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist4.png)
+![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist5.png)
