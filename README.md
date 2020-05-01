@@ -1,6 +1,7 @@
 # 以下简述todolist pro的"todo"部分代码实现过程
 
-## 一.定义数据库名，版本；创建数据库
+## 代码编写
+### 一.定义数据库名，版本；创建数据库
 ```
 public class TodoDbHelper extends SQLiteOpenHelper {
 
@@ -20,7 +21,7 @@ public class TodoDbHelper extends SQLiteOpenHelper {
     }
 }
 ```
-## 二.定义数据库表结构和 SQL 语句常量
+### 二.定义数据库表结构和 SQL 语句常量
 ```
 public final class TodoContract {
 
@@ -45,13 +46,13 @@ public final class TodoContract {
             "DROP TABLE IF EXIST " + TodoEntry.TABLE_NAME;
 }
 ```
-## 三.更改Note类，在Note中加入priority变量
+### 三.更改Note类，在Note中加入priority变量
 ```
 private int priority;
 public void setPriority(int priority) { this.priority = priority; }
 public int getPriority() { return priority; }
 ```
-## 四. 修改布局文件activity_note.xml
+### 四. 修改布局文件activity_note.xml
 加入RadioGroup，包括三个RadioButton，用来选择事务的优先级，分别是emergency，important，todo
 ```
     <RadioGroup
@@ -85,7 +86,7 @@ public int getPriority() { return priority; }
 
     </RadioGroup>
 ```
-## 五.完成NoteActivity.java
+### 五.完成NoteActivity.java
 插入数据并判断是否返回成功
 ```
   private boolean saveNote2Database(String content, int priority) {
@@ -112,7 +113,7 @@ radioGroup = findViewById(R.id.rg_priority);
 ```
 boolean succeed = saveNote2Database(content.toString().trim(), radioGroup.getCheckedRadioButtonId());
 ```
-## 六.完成MainActivity中的数据库查询，更新，删除操作，从而实现todolist的展示，状态变化的更新和todolist中事务的删除
+### 六.完成MainActivity中的数据库查询，更新，删除操作，从而实现todolist的展示，状态变化的更新和todolist中事务的删除
 ```
     private List<Note> loadNotesFromDatabase() {
         // TODO 从数据库中查询数据，并转换成 JavaBeans
@@ -172,4 +173,20 @@ boolean succeed = saveNote2Database(content.toString().trim(), radioGroup.getChe
         notesAdapter.refresh(loadNotesFromDatabase());
     }
 ```
-## 七.
+### 七.在ViewHolder中加入如下代码，实现行背景颜色的区别
+```
+    switch (note.getPriority()) {
+        case R.id.rb1_urgent:
+            itemView.setBackgroundColor(Color.parseColor("#DF1C1C"));
+            break;
+        case R.id.rb2_important:
+            itemView.setBackgroundColor(Color.parseColor("#FF9800"));
+            break;
+        case R.id.rb3_todo:
+            itemView.setBackgroundColor(Color.parseColor("#ffffff"));
+            break;
+    }
+```
+## 效果实现
+！[]
+
