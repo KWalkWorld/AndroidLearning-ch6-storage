@@ -1,5 +1,7 @@
 # 以下简述todolist pro的"todo"部分代码实现过程
 
+## 效果展示部分由于无法加载，不方便编辑，读者可以查看screenshot文件夹中的截图，或者安装TodoList.apk和TodoList_pro.apk
+
 ## 代码编写
 ### 一.定义数据库名，版本；创建数据库
 ```
@@ -187,9 +189,61 @@ boolean succeed = saveNote2Database(content.toString().trim(), radioGroup.getChe
             break;
     }
 ```
-## 实现效果，请查看screenshot文件夹，或者下载todolist.apk和todolist_pro.apk
-![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist1.png)
-![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist2.png)
-![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist3.png)
-![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist4.png)
-![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist5.png)
+
+## 向外部私有存储和向内部存储写文件和读文件代码：
+```
+    //external private
+        final Button fileWriteBtnPrivate = findViewById(R.id.btn_write_external_private);
+        final TextView fileTextPrivate = findViewById(R.id.text_external_private);
+        fileWriteBtnPrivate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        File dir = getExternalFilesDir(null);
+                        File file = new File(dir, "test_external_public");
+                        FileUtils.writeContentToFile(file, "#title \ntest external public content.");
+                        final List<String> contents = FileUtils.readContentFromFile(file);
+                        DebugActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                fileTextPrivate.setText("");
+                                for (String content : contents) {
+                                    fileTextPrivate.append(content + "\n");
+                                }
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
+
+     //internal storage
+        final Button fileWriteBtnInternal = findViewById(R.id.btn_write_internal_storage);
+        final TextView fileTextInternal = findViewById(R.id.text_internal_files);
+        final Context context = this;
+        fileWriteBtnInternal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        File dir = context.getFilesDir();
+                        File file = new File(dir, "test_internal");
+                        FileUtils.writeContentToFile(file, "#title \ntest internal_content.");
+                        final List<String> contents = FileUtils.readContentFromFile(file);
+                        DebugActivity.this.runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                fileTextInternal.setText("");
+                                for (String content : contents) {
+                                    fileTextInternal.append(content + "\n");
+                                }
+                            }
+                        });
+                    }
+                }).start();
+            }
+        });
+```
