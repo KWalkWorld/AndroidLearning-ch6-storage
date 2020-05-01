@@ -1,8 +1,7 @@
-# 以下简述todolist pro的"todo"部分代码实现过程
+# 效果展示部分由于无法加载，不方便编辑，读者可以查看screenshot文件夹中的截图，或者安装TodoList.apk和TodoList_pro.apk
 
-## 效果展示部分由于无法加载，不方便编辑，读者可以查看screenshot文件夹中的截图，或者安装TodoList.apk和TodoList_pro.apk
-
-## 代码编写
+# 以下简述TodoList_pro的"todo"部分代码实现过程和向外部私有和内部存储中读写文件的代码
+## TodoList_pro代码实现:
 ### 一.定义数据库名，版本；创建数据库
 ```
 public class TodoDbHelper extends SQLiteOpenHelper {
