@@ -187,7 +187,7 @@ boolean succeed = saveNote2Database(content.toString().trim(), radioGroup.getChe
             break;
     }
 ```
-## 效果实现
+## 实现效果，请查看screenshot文件夹，或者下载todolist.apk和todolist_pro.apk
 ![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist1.png)
 ![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist2.png)
 ![](https://github.com/KWalkWorld/AndroidLearning-ch6-storage/blob/master/Screenshots/Screenshot_todolist3.png)
